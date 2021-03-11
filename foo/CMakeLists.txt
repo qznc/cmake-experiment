@@ -4,18 +4,22 @@ project(foo
   DESCRIPTION "Very foo project"
   LANGUAGES CXX)
 
-add_library(foo src/foo.cpp)
-target_include_directories(foo
+add_subdirectory(../add sub/add)
+
+add_library(${CMAKE_PROJECT_NAME} src/${CMAKE_PROJECT_NAME}.cpp)
+target_include_directories(${CMAKE_PROJECT_NAME}
   PUBLIC inc
   PRIVATE src)
+target_link_libraries(${CMAKE_PROJECT_NAME}
+  PRIVATE add)
 
-add_executable(unittests
-  test/test_foo.cpp)
-target_link_libraries(unittests
-  PRIVATE foo)
+add_executable(unittests-${CMAKE_PROJECT_NAME}
+  test/test_${CMAKE_PROJECT_NAME}.cpp)
+target_link_libraries(unittests-${CMAKE_PROJECT_NAME}
+  PRIVATE ${CMAKE_PROJECT_NAME})
 
-add_custom_target(unittestreport
-  ./unittests >unittestreport.txt
-  DEPENDS unittests
+add_custom_target(unittestreport-${CMAKE_PROJECT_NAME}
+  ./unittests-${CMAKE_PROJECT_NAME} >unittestreport-${CMAKE_PROJECT_NAME}.txt
+  DEPENDS unittests-${CMAKE_PROJECT_NAME}
 )
 

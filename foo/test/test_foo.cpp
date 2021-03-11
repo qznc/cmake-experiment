@@ -3,10 +3,9 @@
 #include <iostream>
 
 int main(int argc, char **argv) {
-  if (42 != foo())
-  {
-    std::cout << "test foo failed" << std::endl;
-  }
+  std::cout << "test foo "
+    << (42 == foo() ? "succeeded" : "failed")
+    << std::endl;
   return 0;
 }
 

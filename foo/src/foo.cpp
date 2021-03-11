@@ -1,6 +1,7 @@
 #include "foo/foo.hpp"
+#include "add/add.hpp"
 
 int foo(void)
 {
-  return 43;
+  return add2(40);
 }
