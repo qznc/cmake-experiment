@@ -4,18 +4,18 @@ project(add
   DESCRIPTION "Adding all the things"
   LANGUAGES CXX)
 
-add_library(add src/add.cpp)
-target_include_directories(add
+add_library(${PROJECT_NAME} src/${PROJECT_NAME}.cpp)
+target_include_directories(${PROJECT_NAME}
   PUBLIC inc
   PRIVATE src)
 
-add_executable(unittests
-  test/test_add.cpp)
-target_link_libraries(unittests
-  PRIVATE add)
+add_executable(unittests-${PROJECT_NAME}
+  test/test_${PROJECT_NAME}.cpp)
+target_link_libraries(unittests-${PROJECT_NAME}
+  PRIVATE ${PROJECT_NAME})
 
-add_custom_target(unittestreport
-  ./unittests >unittestreport.txt
-  DEPENDS unittests
+add_custom_target(unittestreport-${PROJECT_NAME}
+  ./unittests-${PROJECT_NAME} >unittestreport-${PROJECT_NAME}.txt
+  DEPENDS unittests-${PROJECT_NAME}
 )
 
