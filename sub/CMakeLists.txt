@@ -4,10 +4,16 @@ project(sub
   DESCRIPTION "Subtracting all the things"
   LANGUAGES CXX)
 
+if(NOT TARGET rangecheck)
+add_subdirectory(../rangecheck sub/rangecheck)
+endif()
+
 add_library(${PROJECT_NAME} src/${PROJECT_NAME}.cpp)
 target_include_directories(${PROJECT_NAME}
   PUBLIC inc
   PRIVATE src)
+target_link_libraries(${PROJECT_NAME}
+  PRIVATE rangecheck)
 
 add_executable(unittests-${PROJECT_NAME}
   test/test_${PROJECT_NAME}.cpp)
