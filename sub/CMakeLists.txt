@@ -1,18 +1,13 @@
 cmake_minimum_required(VERSION 3.16.3)
-project(foo
+project(sub
   VERSION 0.1.0
-  DESCRIPTION "Very foo project"
+  DESCRIPTION "Subtracting all the things"
   LANGUAGES CXX)
-
-add_subdirectory(../add sub/add)
-add_subdirectory(../sub sub/sub)
 
 add_library(${PROJECT_NAME} src/${PROJECT_NAME}.cpp)
 target_include_directories(${PROJECT_NAME}
   PUBLIC inc
   PRIVATE src)
-target_link_libraries(${PROJECT_NAME}
-  PRIVATE add sub)
 
 add_executable(unittests-${PROJECT_NAME}
   test/test_${PROJECT_NAME}.cpp)
