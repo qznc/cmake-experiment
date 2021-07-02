@@ -1,12 +1,11 @@
 cmake_minimum_required(VERSION 3.16.3)
+include_guard(GLOBAL)
 project(add
   VERSION 0.1.0
   DESCRIPTION "Adding all the things"
   LANGUAGES CXX)
 
-if(NOT TARGET rangecheck)
 add_subdirectory(../rangecheck sub/rangecheck)
-endif()
 
 add_library(${PROJECT_NAME} src/${PROJECT_NAME}.cpp)
 target_include_directories(${PROJECT_NAME}
